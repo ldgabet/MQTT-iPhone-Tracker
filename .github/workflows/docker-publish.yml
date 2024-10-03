@@ -25,7 +25,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/passific/iphone-tracker:latest
+          tags: ghcr.io/${{ github.repository }}:latest
           build-args: |
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
