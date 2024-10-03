@@ -8,11 +8,7 @@ Docker compose:
 ```yaml
 iphone-tracker:
     container_name: iphone-tracker
-    build:
-      context: https://github.com/Passific/iphone-tracker.git
-      args:
-        - BUILD_DATE="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-        - BUILD_VERSION="1.0.1"
+    image: ghcr.io/passific/iphone-tracker:latest
     restart: unless-stopped
     depends_on:
       - mosquitto
