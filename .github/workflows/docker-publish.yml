@@ -27,6 +27,6 @@ jobs:
           push: true
           tags: ghcr.io/passific/iphone-tracker:latest
           build-args: |
-            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
             BUILD_VERSION=${{ github.ref_name }}
