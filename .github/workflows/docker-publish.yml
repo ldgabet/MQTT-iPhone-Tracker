@@ -29,7 +29,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${REPO}:latest
+          tags: ghcr.io/${{ env.REPO }}:latest
           build-args: |
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
