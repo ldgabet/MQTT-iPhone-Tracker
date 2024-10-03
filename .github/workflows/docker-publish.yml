@@ -20,13 +20,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase repo name
+        run: |
+          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${REPO}:latest
           build-args: |
-            BUILD_DATE=${{ github.event.repository.updated_at }}
+            BUILD_DATE=${{ REPO }}
             BUILD_REF=$(git rev-parse --short HEAD)
             BUILD_VERSION=${{ github.ref_name }}
