@@ -1,5 +1,5 @@
-# iphone-tracker
-Track iPhone on the local network
+# MQTT iPhone-Tracker
+Track iPhone on the local network for Home Assistant
 
 
 ## Usage
@@ -8,7 +8,7 @@ Docker compose:
 ```yaml
 iphone-tracker:
     container_name: iphone-tracker
-    image: ghcr.io/passific/iphone-tracker:latest
+    image: ghcr.io/passific/mqtt-iphone-tracker:latest
     restart: unless-stopped
     depends_on:
       - mosquitto
