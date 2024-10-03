@@ -23,6 +23,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: image/
+          context: .
           push: true
           tags: ghcr.io/passific/iphone-tracker:latest
+          BUILD_ARGS: |
+            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            BUILD_REF=$(git rev-parse --short HEAD)
+            BUILD_VERSION=${{ github.ref_name }}
