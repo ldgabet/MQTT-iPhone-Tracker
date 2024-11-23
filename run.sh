@@ -20,7 +20,7 @@ track_iphone()
         config_cnt=0
         mosquitto_pub -h 127.0.0.1 -p 1883 -u "$MQTT_USER" -P "$MQTT_PASSWORD" \
          -t "homeassistant/device_tracker/${NAME}/config" \
-         -m '{"state_topic": "homeassistant/device_tracker/'"${NAME}"'/state", "name": "'"${PRETTYNAME}"'", "payload_home": "home", "payload_not_home": "not_home"}'
+         -m '{"state_topic": "homeassistant/device_tracker/'"${NAME}"'/state", "name": "'"${PRETTYNAME}"'", "payload_home": "home", "payload_not_home": "not_home", "source_type": "router"}'
     else
         config_cnt=$((config_cnt+1))
     fi
