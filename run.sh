@@ -22,7 +22,7 @@ MQTT_LWT_config()
   NAME="$1"
   PRETTYNAME="$2"
   # Send config on startup
-  send_discovery $NAME $PRETTYNAME
+  send_discovery "$NAME" "$PRETTYNAME"
 
   # Then re-send on HA status set to "online"
   while true; do
@@ -30,8 +30,8 @@ MQTT_LWT_config()
      -t "homeassistant/status" | while read -r payload; do
       # DEBUG
       echo "$(date): homeassistant/status sent $payload"
-      if [ "online" = $payload ]; then
-        send_discovery $NAME $PRETTYNAME
+      if [ "online" = "$payload" ]; then
+        send_discovery "$NAME" "$PRETTYNAME"
       fi
     done
     sleep 1
@@ -51,7 +51,7 @@ track_iphone()
 
   while true; do sleep 12
     # Send config message on Birth and Last Will and Testaments in the background
-    MQTT_LWT_config $NAME $PRETTYNAME &
+    MQTT_LWT_config "$NAME" "$PRETTYNAME" &
 
     # IP
     hping3 -2 -c 3 -p 5353 "$IP" -q >/dev/null 2>&1
