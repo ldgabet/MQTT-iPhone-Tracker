@@ -45,4 +45,4 @@ jobs:
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
             BUILD_VERSION=${{ github.ref_name }}
-          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description="Track iPhones, or any device using Bonjour protocol, on the local network for Home Assistant."
+          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.description'] }}
