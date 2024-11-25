@@ -5,6 +5,16 @@ Track iPhones, or any device using [Bonjour](https://en.wikipedia.org/wiki/Bonjo
 
 This tracking method also works if the device is in deep sleep.
 
+## Supported Architectures
+Uses docker manifest for multi-platform awareness.
+
+List of supported architectures:
+| Architecture | Available |
+| :---: | :---: |
+| amd64 | :white_check_mark: |
+| arm/v6 | :white_check_mark: |
+| arm/v7 | :white_check_mark: |
+| arm64 | :white_check_mark: |
 
 ## Usage
 
