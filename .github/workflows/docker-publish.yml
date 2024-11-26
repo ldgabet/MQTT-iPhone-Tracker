@@ -4,7 +4,7 @@ on:
 #  push:
 #    tags: [ 'v*.*.*' ]
   release:
-    types: [published]
+    types: [published, released, prereleased]
 
 jobs:
   build-and-push-image:
@@ -40,7 +40,7 @@ jobs:
           context: .
           push: true
           platforms: ${{ matrix.platforms }}
-          tags: ghcr.io/${{ env.REPO }}:${{ github.event.action }},ghcr.io/${{ env.REPO }}:latest-dev,ghcr.io/${{ env.REPO }}:${{ github.ref_name }}
+          tags: ${{ (github.event.action == 'released' || github.event.action == 'published') && "ghcr.io/${{ env.REPO }}:latest" || '' }},ghcr.io/${{ env.REPO }}:latest-dev,ghcr.io/${{ env.REPO }}:${{ github.ref_name }}
           build-args: |
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
