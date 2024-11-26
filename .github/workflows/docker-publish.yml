@@ -38,9 +38,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: ${{ github.event.action == 'release' }}
+          push: true
           platforms: ${{ matrix.platforms }}
-          tags: ghcr.io/${{ env.REPO }}:latest
+          tags: ghcr.io/${{ env.REPO }}:latest${{ github.event.action == 'release' && '-dev' }}
           build-args: |
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
