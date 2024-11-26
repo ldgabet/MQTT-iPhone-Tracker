@@ -40,7 +40,7 @@ jobs:
           context: .
           push: true
           platforms: ${{ matrix.platforms }}
-          tags: ghcr.io/${{ env.REPO }}:latest${{ github.event.action == 'release' && '-dev' }}
+          tags: ghcr.io/${{ env.REPO }}:latest${{ github.event.action == 'release' || '-dev' }}
           build-args: |
             BUILD_DATE=${{ github.event.repository.updated_at }}
             BUILD_REF=$(git rev-parse --short HEAD)
