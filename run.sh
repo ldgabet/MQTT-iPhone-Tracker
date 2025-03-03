@@ -58,7 +58,7 @@ track_iphone()
 
   while true; do
     # IP
-    hping3 -2 -c 3 -p 5353 "$IP" -q >/dev/null 2>&1
+    hping3 -2 -c 3 -p 62078 "$IP" -q >/dev/null 2>&1
     if ip neigh show | grep REACHABLE | grep -q "$IP "; then
         guest_status='home'
         guest_lastseen=0
